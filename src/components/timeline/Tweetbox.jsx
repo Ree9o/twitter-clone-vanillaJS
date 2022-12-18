@@ -1,6 +1,6 @@
 import { Avatar, Button } from "@mui/material";
 import React from "react";
-import "../timeline/Tweetbox.css"
+import "../timeline/Tweetbox.css";
 
 function Tweetbox() {
   return (
