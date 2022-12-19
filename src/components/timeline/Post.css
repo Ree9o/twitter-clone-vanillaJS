@@ -20,9 +20,13 @@ border-bottom: 1px solid var(--twitter-background);
     margin-bottom: 10px;
     font-size: 15px;
 }
+.post__headerText{
+    display: flex;
+    align-items: center;
+}
 .post__headerText > h3{
     font-size: 15px;
-    margin-bottom: 5px;
+    /* margin-bottom: 5px; */
 }
 .post__badge{
     font-size: 14px!important;
