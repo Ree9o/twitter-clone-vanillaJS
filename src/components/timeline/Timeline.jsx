@@ -3,16 +3,27 @@ import "../timeline/Timeline.css";
 import Post from "./Post";
 import Tweetbox from "./Tweetbox";
 import db from "../../firebase";
-import { collection, getDocs } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  onSnapshot,
+  orderBy,
+  query,
+} from "firebase/firestore";
+import FlipMove from "react-flip-move";
 
 function Timeline() {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     const postData = collection(db, "posts");
-    getDocs(postData).then((querySnapshot) =>
-      setPosts(querySnapshot.docs.map((doc) => doc.data()))
-    );
-    console.log("relog");
+    const newQuery = query(postData, orderBy("timeStamp", "desc"));
+    // getDocs(newQuery).then((querySnapshot) =>
+    //   setPosts(querySnapshot.docs.map((doc) => doc.data()))
+    // );
+
+    onSnapshot(newQuery, (querySnapshot) => {
+      setPosts(querySnapshot.docs.map((doc) => doc.data()));
+    });
   }, []);
 
   return (
@@ -25,17 +36,19 @@ function Timeline() {
       <Tweetbox />
 
       {/* post */}
-      {posts.map((post) => (
-        <Post
-          key={post.text}
-          displayName={post.displayName}
-          userName={post.userName}
-          verified={post.verified}
-          text={post.text}
-          avater={post.avater}
-          image={post.image}
-        />
-      ))}
+      <FlipMove>
+        {posts.map((post) => (
+          <Post
+            key={post.text}
+            displayName={post.displayName}
+            userName={post.userName}
+            verified={post.verified}
+            text={post.text}
+            avater={post.avater}
+            image={post.image}
+          />
+        ))}
+      </FlipMove>
     </div>
   );
 }
