@@ -4,6 +4,7 @@
   cursor: pointer;
   margin-left: 20px;
 }
+
 .sidebarOption:hover {
   background-color: #e8f5fe;
   border-radius: 30px;
@@ -12,10 +13,12 @@
 }
 .sidebarOption > .MuiSvgIcon-root {
   padding-right: 20px;
-
 }
-.sidebarOption > h2{
-    font-size: 20px;
-    margin-right: 20px;
-    font-weight: 800;
+.sidebarOption > h2 {
+  font-size: 20px;
+  margin-right: 20px;
+  font-weight: 800;
+}
+.sidebarOption__active {
+  color: var(--twitter-color);
 }
